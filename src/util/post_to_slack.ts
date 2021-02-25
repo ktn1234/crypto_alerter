@@ -38,7 +38,7 @@ export function postCrytoAlertsToSlack(
       .then((result) => {
         // The result contains an identifier for the message, `ts`.
         console.log(
-          `${now.toLocaleDateString()} ${now.toLocaleTimeString()} -- Successfully sent message to slack.`
+          `${now.toLocaleDateString()} ${now.toLocaleTimeString()} -- Successfully sent crypto alert message to slack.`
         );
       })
       .catch((err) => {

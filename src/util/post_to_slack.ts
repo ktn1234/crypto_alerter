@@ -1,11 +1,12 @@
 import { WebClient } from "@slack/web-api";
+import { CryptoDataFunction, EtlFunction } from "../const/custom_types";
 
 export function postCrytoAlertsToSlack(
   slack_client: WebClient,
   crypto_tickers: Array<string>,
-  crypto_source_func: Function,
+  crypto_source_func: CryptoDataFunction,
   api_key: string,
-  etl_func: Function,
+  etl_func: EtlFunction,
   slack_channel_id: string,
   now: Date
 ): Promise<any> {
@@ -53,9 +54,9 @@ export function postCrytoAlertsToSlack(
 export function postCrytoAlertsToSlackRecursiveTimeout(
   slack_client: WebClient,
   crypto_tickers: Array<string>,
-  crypto_source_func: Function,
+  crypto_source_func: CryptoDataFunction,
   api_key: string,
-  etl_func: Function,
+  etl_func: EtlFunction,
   slack_channel_id: string,
   now: Date,
   timeout_time: number

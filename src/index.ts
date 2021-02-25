@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { WebClient } from "@slack/web-api";
 
 // Local Imports
+import { CryptoDataFunction, EtlFunction } from "./const/custom_types";
 import { major_crypto } from "./const/crypto_currency_symbol";
 import { crypto_messari_etl } from "./etl/crypto_etl";
 import { getMessariCryptoData } from "./crypto_api/messari";
@@ -48,9 +49,9 @@ if (require.main === module) {
    * @etl_func - defined and import from src/etl/crypto_etl.ts
    */
   const crypto_tickers: Array<string> = major_crypto;
-  const crypto_source_func: Function = getMessariCryptoData;
+  const crypto_source_func: CryptoDataFunction = getMessariCryptoData;
   const api_key: string = messari_api_key;
-  const etl_func: Function = crypto_messari_etl;
+  const etl_func: EtlFunction = crypto_messari_etl;
 
   // Use when running on crontab
   // postCrytoAlertsToSlack(

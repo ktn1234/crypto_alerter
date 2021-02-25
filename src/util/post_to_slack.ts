@@ -75,7 +75,7 @@ export function postCrytoAlertsToSlackRecursiveTimeout(
         api_key,
         etl_func,
         slack_channel_id,
-        now,
+        new Date(),
         timeout_time
       );
     }, timeout_time);

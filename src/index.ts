@@ -64,7 +64,7 @@ if (require.main === module) {
   // );
 
   // Use when running without crontab
-  const timeout_time = 60000 * 60; // in ms
+  const timeout_time = 60000 * 60; // 1 hour in ms
   postCrytoAlertsToSlackRecursiveTimeout(
     slack_client,
     crypto_tickers,

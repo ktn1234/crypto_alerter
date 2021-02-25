@@ -44,6 +44,8 @@ export function postCrytoAlertsToSlack(
         console.error(
           `${now.toLocaleDateString()} ${now.toLocaleTimeString()} -- ${err}`
         );
+        console.error("Terminating process...");
+        process.exit(1);
       });
   });
 }

@@ -11,21 +11,20 @@ import {
   postCrytoAlertsToSlack,
   postCrytoAlertsToSlackRecursiveTimeout,
 } from "./util/post_to_slack";
+import { checkEnvironmentalVariables } from "./config";
 
 /**
  * Inject the following environment variables specified in .env with dotenv library:
  *
  * SLACK_APP_TOKEN
  * SLACK_CHANNEL_ID
+ * MESSARI_API_KEY
+ * COIN_MARKETCAP_API_KEY
  *
- * ANY CYRPTO API KEYS
- *
+ * if you want to use other crypto APIs, put them in the array in config.ts
+ * add it to the DockerFile and build argument in the docker-build script
  */
-const result = dotenv.config();
-if (result.error) {
-  throw result.error;
-}
-
+checkEnvironmentalVariables();
 const slack_app_token: string = process.env.SLACK_APP_TOKEN as string;
 const slack_channel_id: string = process.env.SLACK_CHANNEL_ID as string;
 

@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --project ./tsconfig.json",
     "lint": "tsc && npx eslint . --ext .ts",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "docker-build": "while read line; do export $line; done < .env && docker build --no-cache=true --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --build-arg SLACK_APP_TOKEN=$(echo $SLACK_APP_TOKEN) --build-arg SLACK_CHANNEL_ID=$(echo $SLACK_CHANNEL_ID) --build-arg MESSARI_API_KEY=$(echo $MESSARI_API_KEY) --build-arg COIN_MARKETCAP_API_KEY=$(echo $COIN_MARKETCAP_API_KEY) -t crypto_alerter:latest .",
+    "docker-run": "docker container run -d --name crypto_alerter -p 8000:8000 crypto_alerter:latest",
+    "docker-clean": "docker container stop crypto_alerter && docker container rm crypto_alerter && docker image rm crypto_alerter:latest && docker rmi $(docker images --filter 'dangling=true' -q --no-trunc) || echo 'No dangling images, cleanup complete.'",
+    "docker-build-and-run": "npm run docker-build && npm run docker-run",
+    "docker-logs": "docker logs crypto_alerter -t -f"
   },
   "repository": {
     "type": "git",
